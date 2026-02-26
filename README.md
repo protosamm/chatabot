@@ -1,6 +1,8 @@
 ![chatAbot](logo.svg)
 
 Live Demo:- https://chatabot-tau.vercel.app/
+> ⚠️ **Notice:** This project is not responsive on mobile devices yet.
+
 
 This repository contains a full-stack chatbot application built with a Node.js/Express backend and a React/Vite frontend. The API handles authentication, chat management, and integration with generative AI services (e.g., Google Generative AI). The frontend provides a dynamic chat interface using modern React features.
 

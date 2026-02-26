@@ -90,7 +90,7 @@ function Login() {
           <button type='submit' className="bg-red-500 p-3 rounded-full font-normal cursor-pointer active:bg-red-700 active:scale-95 transition-all duration-150 text-white mt-3">Login</button>
           <span className="font-normal text-[0.85rem] m-auto">
             Don't have an account? 
-            <Link to='/signup' className="text-red-500 hover:text-red-700"> Signup</Link>
+            <Link to='/register' className="text-red-500 hover:text-red-700"> Register</Link>
           </span>
         </form>
         <ToastContainer />

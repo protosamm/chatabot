@@ -26,11 +26,11 @@ const MessageInput = ({ onSend, loading }) => {
         />
         <button
           type="submit"
-          disabled={loading} hidden={!message}
-          className="bg-red-500 hover:bg-red-700 cursor-pointer w-[10%] rounded-full disabled:opacity-50 hover:pl-2 transition-all ease-in"
+          disabled={loading || !message.trim()}
+          className="bg-red-600 hover:bg-green-500 disabled:hover:bg-red-600 cursor-pointer h-full aspect-square rounded-full disabled:opacity-50 disabled:cursor-default flex items-center justify-center transition-all ease-in"
         >
-          <svg className="text-white bi bi-arrow-right-short m-auto w-[50%] h-full " fillRule="currentColor" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8"/>
+          <svg className="text-white w-6 h-6" fill="currentColor" viewBox="0 0 16 16">
+            <path fillRule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8"/>
           </svg>
         </button>
       </div>

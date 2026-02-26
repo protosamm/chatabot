@@ -1,3 +1,7 @@
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import { markdownComponents } from "../config/markdownComponents";
+
 const MessageBubble = ({ message }) => {
   const isUser = message.role === "user";
 
@@ -12,10 +16,12 @@ const MessageBubble = ({ message }) => {
           ${
             isUser
               ? "bg-red-800 text-white max-w-xl"
-              : "text-gray-100"
+              : "text-gray-100 max-w-2xl"
           }`}
       >
-        {message.content}
+        <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
+          {message.content}
+        </ReactMarkdown>
       </div>
     </div>
   );

@@ -4,9 +4,9 @@ import { ToastContainer } from 'react-toastify'
 import { handleError, handleSuccess } from "../utils"
 import API from '../services/api'
 
-function Signup() {
+function Register() {
   
-  const [SignupInfo, setSignupInfo] = useState({
+  const [RegisterInfo, setRegisterInfo] = useState({
     name: '',
     email: '',
     password: ''
@@ -16,25 +16,25 @@ function Signup() {
 
   const handleChange = (e) => {
     const {name, value} = e.target;
-    const copySignupInfo = {...SignupInfo};
-    copySignupInfo[name] = value;
-    setSignupInfo(copySignupInfo);
+    const copyRegisterInfo = {...RegisterInfo};
+    copyRegisterInfo[name] = value;
+    setRegisterInfo(copyRegisterInfo);
   }
 
-  const handleSignup = async (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
 
-    const { name, email, password }  = SignupInfo;
+    const { name, email, password }  = RegisterInfo;
     if (!name || !email || !password) {
       return handleError('name, email and password are required');
     }
 
     try {
-        const response = await API.post("/auth/register", SignupInfo);
+        const response = await API.post("/auth/register", RegisterInfo);
         const result = response.data;
 
         if(result.success){
-            handleSuccess(result.message || "Signup Successful");
+            handleSuccess(result.message || "Register Successful");
             setTimeout(()=>{
             navigate('/login')
             }, 1000)
@@ -56,14 +56,14 @@ function Signup() {
     <div className='bg-[#202020] w-full h-full flex justify-center items-center'>
       <div className='bg-[#303030]  rounded-lg p-[clamp(1rem,3vw,2.5rem)] font-roboto w-[clamp(16rem,50%,26rem)]'>
 
-        <h1 className="text-4xl font-medium mb-5 text-red-500">Sign up</h1>
+        <h1 className="text-4xl font-medium mb-5 text-red-500">Register User</h1>
         
-        <form id='signupform' onSubmit={handleSignup} className="text-[1rem] text-[#f1f1f1] font-medium w-full flex flex-col gap-5">
+        <form id='registerform' onSubmit={handleRegister} className="text-[1rem] text-[#f1f1f1] font-medium w-full flex flex-col gap-5">
           
           <div className="">
             <label htmlFor='name' className="">Name</label>
             <input 
-              value = {SignupInfo.name}
+              value = {RegisterInfo.name}
               onChange={handleChange} 
               className="bg-[#202020] w-full focus:outline-red-300 focus:outline-2 rounded-[0.3rem] px-3 py-2 font-normal" 
               id='name' 
@@ -76,9 +76,9 @@ function Signup() {
           <div>
             <label htmlFor='email'>Email</label>
             <input 
-              value = {SignupInfo.email}
+              value = {RegisterInfo.email}
               onChange={handleChange} 
-              className="bg-[#202020] w-full focus:outline-purpshade focus:outline-2 rounded-[0.3rem] px-3 py-2 font-normal" 
+              className="bg-[#202020] w-full focus:outline-red-300 focus:outline-2 rounded-[0.3rem] px-3 py-2 font-normal" 
               id='email' 
               type='email' 
               name='email' 
@@ -88,9 +88,9 @@ function Signup() {
           <div>
             <label htmlFor='password'>Password</label>
             <input
-              value = {SignupInfo.password}
+              value = {RegisterInfo.password}
               onChange={handleChange}  
-              className="bg-[#202020] w-full focus:outline-purpshade focus:outline-2 rounded-[0.3rem] px-3 py-2 font-normal" 
+              className="bg-[#202020] w-full focus:outline-red-300 focus:outline-2 rounded-[0.3rem] px-3 py-2 font-normal" 
               id='password' 
               type='password' 
               name='password'
@@ -109,4 +109,4 @@ function Signup() {
   )
 }
 
-export default Signup
+export default Register

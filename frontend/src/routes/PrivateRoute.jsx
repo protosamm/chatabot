@@ -3,9 +3,9 @@ import { useAuth } from "../contexts/AuthContexts";
 
 function PrivateRoute() {
    
-   const { user, loading } = useAuth();
+   const { user, userLoading } = useAuth();
 
-   if(loading) {
+   if(userLoading) {
         return <div>Loading...</div>;
    }
    

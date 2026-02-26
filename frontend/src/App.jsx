@@ -1,11 +1,10 @@
 import { Routes, Route } from 'react-router-dom'
 import PublicRoute from './routes/PublicRoute'
 import PrivateRoute from './routes/PrivateRoute'
-import Home from './pages/ChatLayout'
 import Login from './pages/Login'
 import Register from './pages/Register'
-import './App.css'
 import ChatLayout from './pages/ChatLayout'
+import './App.css'
 
 function App() {
 

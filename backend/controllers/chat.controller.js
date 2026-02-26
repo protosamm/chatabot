@@ -2,7 +2,6 @@ const Conversation = require('../models/conversation.model');
 const Message = require('../models/message.model');
 const generateResponse = require('../utils/gemini.utils');
 
-
 const getUserConversation = async (req, res)=>{
     try {
         const conversations = await Conversation.find({
@@ -19,6 +18,63 @@ const getUserConversation = async (req, res)=>{
 
     } catch(error) {
         return res.status(500).json({message: error.message, success: false});
+    }
+}
+
+const updateConversationTitle = async (req, res)=>{
+    try {
+        const { conversationId } = req.params;
+        const { title } = req.body;
+
+        const conversation = await Conversation.findOneAndUpdate({
+            _id: conversationId,
+            userId: req.user.id
+        }, { title }, { returnDocument: 'after' });
+
+        if(!conversation){
+            return res.status(404).json({message: "Conversation not found", success: false});
+        }
+
+        res.status(200).json({message: "Title updated", success: true, conversation});
+    } catch(error){
+        return res.status(500).json({message: error.message, success: false});
+    }
+}
+
+const deleteConversations = async (req, res)=>{
+    try {
+        const { conversationId } = req.params;
+
+        const conversation = await Conversation.findOne({
+            _id: conversationId,
+            userId: req.user.id
+        });
+
+        if (!conversation) {
+            return res.status(404).json({
+                success: false,
+                message: "Conversation not found"
+            });
+        };
+
+        await Message.deleteMany({
+            conversationId
+        });
+
+        await Conversation.deleteOne({
+            _id: conversationId
+        });
+
+        return res.status(200).json({
+            success: true,
+            message: "Conversation deleted successfully"
+        });
+
+    } catch(error){
+        return res.status(500).json({
+            success: false,
+            message: error.message
+        });
     }
 }
 
@@ -102,4 +158,4 @@ const sendMessage = async (req, res)=>{
     }
 }
 
-module.exports = { sendMessage, getUserConversation, getMessages };
+module.exports = { sendMessage, getUserConversation, updateConversationTitle, getMessages, deleteConversations };

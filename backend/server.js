@@ -5,17 +5,13 @@ const cors = require("cors");
 dotenv.config();
 
 const connectDB = require("./config/db");
-dns.setServers(["1.1.1.1"]);
+dns.setServers(["1.1.1.1", "8.8.8.8"]);
 
 connectDB();
 
 const app = express();
 
-app.use(cors({
-  origin: process.env.FRONTEND_URL || "http://localhost:5173",
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: true
-}));
+app.use(cors());
 
 app.use(express.json());
 

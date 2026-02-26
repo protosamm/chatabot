@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="80">
+  <text x="0" y="55" font-size="55" font-family="Arial, Helvetica, sans-serif">
+    chat<tspan fill="#ff0000">A</tspan>bot
+  </text>
+</svg>
